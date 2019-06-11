@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Acordo Certo</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>		 	
+(function() {
+	function toJSONString( form ) {
+		var obj = {};
+		var elements = form.querySelectorAll( "input, select, textarea" );
+		for( var i = 0; i < elements.length; ++i ) {
+			var element = elements[i];
+			var name = element.name;
+			var value = element.value;
+
+			if( name ) {
+				obj[ name ] = value;
+			}
+		}
+
+		return JSON.stringify( obj );
+	}
+
+	document.addEventListener( "DOMContentLoaded", function() {
+		var form = document.getElementById( "test" );
+		var output = document.getElementById( "output" );
+		form.addEventListener( "submit", function( e ) {
+			e.preventDefault();
+			var json = toJSONString( this );
+			output.innerHTML = json;
+			 $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType: "JSON",               
+                url: "http://localhost:8080/usuario",
+				data: json,
+                success: function (result) {                    
+                    console.log(result);                                        
+                },
+                error: function (error) {                    
+                    console.log(error);
+                }
+            });
+
+		}, false);
+
+	});
+
+})();
+</script>
+</head>
+<body>
+<div class="container">
+<form id="test" action="#" method="post">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" name="name" id="name" />
+    </div>
+    <div class="form-group">
+    	<label for="check">Check if you like JavaScript</label>
+    	<input type="checkbox" name="javascript" value="true"/>
+    </div>
+    <div class="form-group">
+    	<label for="select">Select your favorite JavaScript framework</label>
+    	<select name="framework" class="form-control">
+    		<option value="none" selected="selected">None</option>
+    		<option value="jquery">jQuery</option>
+    		<option value="angularjs">Angular</option>    		
+    	</select>
+
+    </div>
+    <div class="form-group">
+    	<label for="message">Leave a message</label>
+    	<textarea class="form-control" name="message" rows="15" cols="30"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="text" name="email" id="email" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password" />
+    </div>
+    <p>
+        <input type="submit" value="Send" class="btn btn-primary btn-block" />
+    </p>
+</form>	
+</div>
+<pre id="output"></pre>
+
+</body>
+</html>

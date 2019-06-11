@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: acordo-certo-test-web
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: cubo09
+Implementation-Vendor-Id: br.com.acordocerto
+Build-Jdk: 1.8.0_211
+Implementation-URL: http://projects.spring.io/spring-boot/acordo-certo
+ -test/acordo-certo-test-domain/acordo-certo-test-web/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
