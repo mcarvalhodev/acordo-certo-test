@@ -23,10 +23,17 @@
 			var value = element.value;
 
 			if( name ) {
+				if (name === 'javascript') {
+					obj[ name ] = element.checked;
+					continue;
+				}
+				if (name === 'gender') {
+					continue;
+				}
 				obj[ name ] = value;
 			}
 		}
-
+		obj[ 'gender' ] = $("input[name='gender']:checked").val();
 		return JSON.stringify( obj );
 	}
 
@@ -52,9 +59,7 @@
             });
 
 		}, false);
-
 	});
-
 })();
 </script>
 </head>
@@ -67,7 +72,12 @@
     </div>
     <div class="form-group">
     	<label for="check">Check if you like JavaScript</label>
-    	<input type="checkbox" name="javascript" value="true"/>
+    	<input type="checkbox" name="javascript"/>
+    </div>
+    <div class="form-group">
+    	<p>Gender</p>
+    	<input type="radio" name="gender" value="male" checked/> Male <br>
+    	<input type="radio" name="gender" value="female"/> Female
     </div>
     <div class="form-group">
     	<label for="select">Select your favorite JavaScript framework</label>

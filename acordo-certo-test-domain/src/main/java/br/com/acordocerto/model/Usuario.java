@@ -12,6 +12,7 @@ public class Usuario {
 	private Long id;
 	private String name;
 	private boolean javascript;
+	private String gender;
 	private String framework;
 	private String message;
 	private String email;
@@ -67,5 +68,13 @@ public class Usuario {
 
 	public void setJavascript(boolean javascript) {
 		this.javascript = javascript;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }
